@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx0dvostcrcit"]
+
+[ext_resource type="Script" uid="uid://de371rdaa500k" path="res://assets/scripts/TerrainSystem/[DEPRECATED] Editor Scripts/terrain_region.gd" id="1_k8g8s"]
+[ext_resource type="Script" uid="uid://bh2fyqxpwgvcl" path="res://assets/scripts/TerrainSystem/[DEPRECATED] Editor Scripts/on_Move.gd" id="2_m8pqw"]
+
+[node name="TerrainRegion" type="Node2D"]
+script = ExtResource("1_k8g8s")
+
+[node name="Selector2" type="Node2D" parent="."]
+position = Vector2(10, -10)
+script = ExtResource("2_m8pqw")
+
+[connection signal="positon_updated" from="Selector2" to="." method="_on_node_2d_positon_updated"]
