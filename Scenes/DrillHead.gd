@@ -4,7 +4,7 @@ extends Node2D
 @onready var ray_right: RayCast2D = $RayRight
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	check_mine_ray_collision(ray_left);
 	check_mine_ray_collision(ray_right);
 
