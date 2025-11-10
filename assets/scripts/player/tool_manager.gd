@@ -17,8 +17,6 @@ func physics_update(delta: float) -> void:
 	if active_tool != null:
 		active_tool.physics_update(delta);
 
-
-
 func change_tool(tool_name: String) -> void:
 	var tool: Tool = tools.get(tool_name.to_lower());
 	assert(tool, "State not found: " + tool_name);

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdjhhyifdbf3d"]
+
+[ext_resource type="Script" uid="uid://cpwe1s5fo8rem" path="res://Components/RotateToMouse/rotate_to_mouse.gd" id="1_0qb07"]
+
+[node name="RotateToMouse" type="Node2D"]
+script = ExtResource("1_0qb07")

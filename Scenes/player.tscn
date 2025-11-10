@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://bbk0y212ckl8c"]
+[gd_scene load_steps=102 format=3 uid="uid://bbk0y212ckl8c"]
 
 [ext_resource type="Script" uid="uid://1ga22a54xm6f" path="res://assets/scripts/player/player.gd" id="1_vgqql"]
 [ext_resource type="Script" uid="uid://cuml4q40hqd6r" path="res://assets/scripts/StateMachineGeneric/StateMachine.gd" id="2_8erm5"]
@@ -6,9 +6,10 @@
 [ext_resource type="Script" uid="uid://x0dwycwqf13p" path="res://assets/scripts/player/tools/Wrench.gd" id="3_bi64h"]
 [ext_resource type="Script" path="res://assets/scripts/player/MovementStates/Land/LandStateMachine.gd" id="3_f1ek2"]
 [ext_resource type="Script" uid="uid://dts40270a0kh5" path="res://assets/scripts/player/tools/drill.gd" id="3_wpjfl"]
-[ext_resource type="Script" path="res://assets/scripts/player/MovementStates/Land/LandWalk.gd" id="4_gymyn"]
+[ext_resource type="Script" uid="uid://dn8sh02ju0jv8" path="res://assets/scripts/player/MovementStates/Land/LandWalk.gd" id="4_gymyn"]
 [ext_resource type="Texture2D" uid="uid://c3gd3og7lfyu5" path="res://assets/sprites/player/MiningOutline.png" id="5_fkybt"]
 [ext_resource type="Script" path="res://assets/scripts/player/MovementStates/Land/LandRun.gd" id="5_gymyn"]
+[ext_resource type="PackedScene" uid="uid://cdjhhyifdbf3d" path="res://Components/RotateToMouse/RotateToMouse.tscn" id="5_olqyp"]
 [ext_resource type="Texture2D" uid="uid://dn8w47qdk5nn" path="res://assets/sprites/player/drill.png" id="6_3smsa"]
 [ext_resource type="Script" path="res://assets/scripts/player/MovementStates/Land/LandIdle.gd" id="6_pu2lt"]
 [ext_resource type="Script" path="res://assets/scripts/player/MovementStates/Land/LandJump.gd" id="7_ukyrk"]
@@ -20,6 +21,13 @@
 [ext_resource type="Texture2D" uid="uid://bkxckke2sbwu7" path="res://assets/sprites/player/Torso/MainCharacter-Land.png" id="22_bi64h"]
 [ext_resource type="Texture2D" uid="uid://d11sjvvuhncyb" path="res://assets/sprites/player/Head/MainCharacter-Land.png" id="23_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://d0m2ijgun7noj" path="res://assets/sprites/player/Legs/MainCharacter-swim.png" id="24_p1odr"]
+
+[sub_resource type="Gradient" id="Gradient_l6n3p"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_olqyp"]
+gradient = SubResource("Gradient_l6n3p")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ijsl"]
 atlas = ExtResource("5_fkybt")
@@ -805,33 +813,6 @@ tracks/1/keys = {
 "values": [&"Up"]
 }
 
-[sub_resource type="Animation" id="Animation_l6n3p"]
-resource_name = "Right"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HeadSprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Right"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HeadSprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.5, -9.5)]
-}
-
 [sub_resource type="Animation" id="Animation_36dho"]
 resource_name = "run"
 tracks/0/type = "value"
@@ -886,10 +867,37 @@ tracks/1/keys = {
 "values": [&"Up"]
 }
 
+[sub_resource type="Animation" id="Animation_l6n3p"]
+resource_name = "right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Right"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, -9.5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nv4vc"]
 _data = {
 &"RESET": SubResource("Animation_nv4vc"),
-&"Right": SubResource("Animation_l6n3p"),
+&"right": SubResource("Animation_l6n3p"),
 &"run": SubResource("Animation_36dho"),
 &"up": SubResource("Animation_yh6i2")
 }
@@ -944,14 +952,26 @@ player_color = Color(0.99408454, 0.44963652, 0.84675455, 1)
 
 [node name="ToolManager" type="Node2D" parent="." node_paths=PackedStringArray("initial_tool")]
 script = ExtResource("2_qqcod")
-initial_tool = NodePath("Drill")
+initial_tool = NodePath("Wrench")
 
 [node name="Wrench" type="Node2D" parent="ToolManager"]
 script = ExtResource("3_bi64h")
 
+[node name="RotateToMouse" parent="ToolManager/Wrench" instance=ExtResource("5_olqyp")]
+
+[node name="WrenchRayCast" type="RayCast2D" parent="ToolManager/Wrench"]
+target_position = Vector2(24, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ToolManager/Wrench/WrenchRayCast"]
+position = Vector2(24, 0)
+scale = Vector2(0.0234375, 6.0000005)
+texture = SubResource("GradientTexture1D_olqyp")
+
 [node name="Drill" type="Node2D" parent="ToolManager" node_paths=PackedStringArray("player")]
 script = ExtResource("3_wpjfl")
 player = NodePath("../..")
+
+[node name="RotateToMouse" parent="ToolManager/Drill" instance=ExtResource("5_olqyp")]
 
 [node name="MiningRayCast" type="RayCast2D" parent="ToolManager/Drill"]
 unique_name_in_owner = true
@@ -1025,6 +1045,7 @@ autoplay = "Bob"
 [node name="DrillSprite" type="AnimatedSprite2D" parent="BodySpriteManager"]
 unique_name_in_owner = true
 visible = false
+z_index = 10
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_7ldla")
 frame_progress = 0.45208594

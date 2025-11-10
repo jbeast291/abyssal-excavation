@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://ctquhcgmi3k6x"]
+[gd_scene load_steps=5 format=3 uid="uid://ctquhcgmi3k6x"]
+
+[ext_resource type="Script" uid="uid://dng1tcyubwmq1" path="res://Scenes/proto_bore.gd" id="1_3dn18"]
+[ext_resource type="Script" uid="uid://csb0fx7jahwde" path="res://Scenes/DrillHead.gd" id="1_jh2rb"]
+
+[sub_resource type="Gradient" id="Gradient_r4ikp"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.7, 0.7, 0.7, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jh2rb"]
+gradient = SubResource("Gradient_r4ikp")
 
 [node name="ProtoBore" type="Node2D"]
+script = ExtResource("1_3dn18")
+
+[node name="DrillHead" type="Sprite2D" parent="."]
+rotation = -0.78620696
+texture = SubResource("GradientTexture2D_jh2rb")
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(0, -62)
+scale = Vector2(1.25, 1.8125)
+texture = SubResource("GradientTexture2D_jh2rb")
+
+[node name="DrillHeadManager" type="Node2D" parent="."]
+script = ExtResource("1_jh2rb")
+
+[node name="RayLeft" type="RayCast2D" parent="DrillHeadManager"]
+position = Vector2(0, 48)
+target_position = Vector2(-48, -48)
+hit_from_inside = true
+
+[node name="RayRight" type="RayCast2D" parent="DrillHeadManager"]
+position = Vector2(0, 48)
+target_position = Vector2(48, -48)
+hit_from_inside = true

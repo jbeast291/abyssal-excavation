@@ -10,7 +10,8 @@ func _ready():
 func enter() -> void:
 	body_sprite_manager.play_leg_animation("land_walk")
 	body_sprite_manager.play_torso_animation("land_walk")
-
+	body_sprite_manager.play_head_animation("right")
+	
 func physics_update(_delta: float) -> void:
 	apply_input();
 	
