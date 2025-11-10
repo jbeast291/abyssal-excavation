@@ -1,12 +1,11 @@
 class_name Drill extends Tool
-
-#Components
-@onready var rotate_to_mouse: RotateToMouse = $RotateToMouse
-
 @onready var selector_overlay: AnimatedSprite2D = %CellSelector
-@onready var drill_ray_cast: RayCast2D = %MiningRayCast
+@onready var drill_ray_cast: RayCast2D = $MiningRayCast
 @onready var drill_sprite: AnimatedSprite2D = %DrillSprite
 @export var player: CharacterBody2D;
+
+#Components
+@export var rotate_to_mouse: Component;
 
 var main_tile_layer;
 var drill_speed: float:
@@ -48,8 +47,8 @@ func _update_target():
 	
 	if drill_ray_cast.is_colliding():
 		
-		var direction = (drill_ray_cast.target_position).normalized().rotated(drill_ray_cast.rotation)
-		var step_distance = 2.0 # number of pixels to step extra past the raycast collision
+		var direction = (drill_ray_cast.target_position).normalized().rotated(self.rotation);
+		var step_distance = 4.0 # number of pixels to step extra past the raycast collision
 		var stepped_pos = drill_ray_cast.get_collision_point() + direction * step_distance
 		var new_target_cell: Vector2i = main_tile_layer.local_to_map(stepped_pos)
 		var world_pos = main_tile_layer.map_to_local(new_target_cell)
@@ -70,8 +69,8 @@ func _update_target():
 		target_percent_for_hit = 0;
 		
 func _handle_drill_sprite():
-	drill_sprite.rotation = drill_ray_cast.rotation;
-	if drill_ray_cast.rotation < -PI/2 || drill_ray_cast.rotation > PI/2 :
+	drill_sprite.rotation = self.rotation;
+	if self.rotation < -PI/2 || self.rotation > PI/2 :
 		drill_sprite.flip_v = true;
 	else:
 		drill_sprite.flip_v = false;

@@ -1,6 +1,6 @@
 extends CharacterBody2D;
 @onready var movement_state_machine: StateMachine = %MovementStateMachine
-@onready var tool_manager: Node2D = $ToolManager
+@onready var tool_manager: ToolManager = %ToolManager
 #@onready var body_sprite: AnimatedSprite2D = %BodySprite
 
 @export var player_color: Color;
@@ -23,6 +23,13 @@ func _physics_process(delta: float):
 	if Input.is_action_just_pressed("DEBUG_SwitchMotorMode"):
 		enter_water();
 		#print(movement_state_machine.get_current_state_path());
+		
+	if Input.is_action_just_pressed("Slot1"):
+		tool_manager.change_tool("Drill");
+		
+			
+	if Input.is_action_just_pressed("Slot2"):
+		tool_manager.change_tool("Wrench");
 	pass
 
 func enter_water():

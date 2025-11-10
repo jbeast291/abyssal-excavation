@@ -1,4 +1,4 @@
-extends Tool
+class_name ToolManager extends Node2D
 
 @export var initial_tool: Tool;
 

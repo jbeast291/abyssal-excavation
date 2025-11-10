@@ -28,9 +28,11 @@ script = ExtResource("1_jh2rb")
 [node name="RayLeft" type="RayCast2D" parent="DrillHeadManager"]
 position = Vector2(0, 48)
 target_position = Vector2(-48, -48)
+collision_mask = 2
 hit_from_inside = true
 
 [node name="RayRight" type="RayCast2D" parent="DrillHeadManager"]
 position = Vector2(0, 48)
 target_position = Vector2(48, -48)
+collision_mask = 2
 hit_from_inside = true
