@@ -1,4 +1,4 @@
-class_name ToolManager extends Node2D
+extends Tool
 
 @export var initial_tool: Tool;
 
@@ -12,7 +12,6 @@ func _ready() -> void:
 			tools[child.name.to_lower()] = child;
 			child.deactivate()
 	active_tool = initial_tool;
-	active_tool.activate()
 
 func physics_update(delta: float) -> void:
 	if active_tool != null:

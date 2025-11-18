@@ -1,30 +1,26 @@
-extends TileMapLayer
-class_name TerrainManager;
-
-#TODO: Move terrain gen specifics (so anything only needed to generate terrain) to a seperate class so its not as cluttered :/
-#TODO: Seperate fog functions from this script so its clear what coords need to be used
+class_name TerrainManager extends TileMapLayer;
 
 @export var placement_layer: PlacementLayerInfo;
 @export var fog_layer: FogManager;
-@export var terrain_generator: TerrainGenerator;
 
 @export var fog_view_penetration: int;
 @export var debug_mode: bool = true;
 
+var terrain_generator: TerrainGenerator;
 var air_atlas_source_id = 1;
 var air_unexplored_atlas_coords: Vector2i = Vector2i(0,0)
 var air_explored_atlas_coords: Vector2i = Vector2i(1,0)
 var cell_size: int = 8;
 static var main: TerrainManager;
 
-
 func _ready():
 	assert(placement_layer!=null);
 	assert(fog_layer!=null);
-	assert(terrain_generator!=null);
 	main = self;
 	
+	terrain_generator = TerrainGenerator.new(self, placement_layer, fog_layer);
 	terrain_generator._generate_terrain();
+	terrain_generator = null; # godot will free the genertor from memory after this
 	if debug_mode:
 		activate_debug_mode();
 

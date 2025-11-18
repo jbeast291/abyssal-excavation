@@ -1,12 +1,15 @@
-class_name TerrainGenerator extends Node
+class_name TerrainGenerator extends RefCounted
 
-@export var main_tile_layer: TerrainManager;
-@export var placement_layer: PlacementLayerInfo;
-@export var fog_layer: FogManager;
+var main_tile_layer: TerrainManager;
+var placement_layer: PlacementLayerInfo;
+var fog_layer: FogManager;
 
-@export var generation_seed: int = 1234; 
+var generation_seed: int = 1234; 
 
-func _ready() -> void:
+func _init(_main_tile_layer: TerrainManager, _placement_layer: PlacementLayerInfo, _fog_layer: FogManager):
+	main_tile_layer = _main_tile_layer;
+	placement_layer = _placement_layer;
+	fog_layer = _fog_layer;
 	assert(main_tile_layer!=null);
 	assert(placement_layer!=null);
 	assert(fog_layer!=null);

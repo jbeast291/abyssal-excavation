@@ -1,5 +1,6 @@
 class_name Wrench extends Tool
 
+@onready var cell_selector: AnimatedSprite2D = %CellSelector
 @onready var wrench_ray_cast: RayCast2D = $WrenchRayCast
 @onready var rotate_to_mouse: RotateToMouse = $RotateToMouse
 
@@ -8,12 +9,9 @@ func _ready() -> void:
 
 func deactivate() -> void:
 	wrench_ray_cast.enabled = false;
-	pass
 
 func activate() -> void:
 	wrench_ray_cast.enabled = true;
-	pass
 
 func physics_update(delta: float) -> void:
 	rotate_to_mouse.physics_update(delta);
-	pass
