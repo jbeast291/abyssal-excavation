@@ -4,7 +4,7 @@ class_name TerrainManager extends TileMapLayer;
 @export var fog_layer: FogManager;
 
 @export var fog_view_penetration: int;
-@export var debug_mode: bool = true;
+@export var debug_mode: bool = false;
 
 var terrain_generator: TerrainGenerator;
 var air_atlas_source_id = 1;

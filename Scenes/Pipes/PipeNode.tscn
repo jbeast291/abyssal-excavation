@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://3e7qcikegg3y"]
+
+[ext_resource type="Script" uid="uid://ukfyjj5wgwk3" path="res://assets/scripts/PipeSystem/PipeNode.gd" id="1_va53g"]
+[ext_resource type="Script" uid="uid://cuml4q40hqd6r" path="res://assets/scripts/StateMachineGeneric/StateMachine.gd" id="2_akphe"]
+[ext_resource type="Script" uid="uid://c6r454d1dhe3c" path="res://assets/scripts/PipeSystem/PlacementState.gd" id="3_hexpe"]
+[ext_resource type="Script" uid="uid://8e4nqn3vlo3p" path="res://assets/scripts/StateMachineGeneric/State.gd" id="4_nlrk5"]
+[ext_resource type="Texture2D" uid="uid://0n246itws115" path="res://assets/sprites/Pipes/PipeNode.png" id="5_dgoxg"]
+[ext_resource type="PackedScene" uid="uid://dros00nqhabix" path="res://Scenes/Lights/light.tscn" id="6_c6s4e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4a32"]
+size = Vector2(14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fii7x"]
+atlas = ExtResource("5_dgoxg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxldp"]
+atlas = ExtResource("5_dgoxg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kp01x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fii7x")
+}],
+"loop": true,
+"name": &"Active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxldp")
+}],
+"loop": true,
+"name": &"Disabled",
+"speed": 5.0
+}]
+
+[node name="PipeNode" type="Area2D"]
+script = ExtResource("1_va53g")
+
+[node name="PipeStateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("2_akphe")
+initial_state = NodePath("Placement")
+
+[node name="Placement" type="Node" parent="PipeStateManager"]
+unique_name_in_owner = true
+script = ExtResource("3_hexpe")
+
+[node name="Idle" type="Node" parent="PipeStateManager"]
+script = ExtResource("4_nlrk5")
+metadata/_custom_type_script = "uid://8e4nqn3vlo3p"
+
+[node name="MainCollider" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_y4a32")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_kp01x")
+animation = &"Disabled"
+
+[node name="AmbientLight" parent="." instance=ExtResource("6_c6s4e")]
+unique_name_in_owner = true
+modulate = Color(0.99607843, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(-5.364418e-07, -1.1920929e-07)
+scale = Vector2(0.07, 0.07)
+light_intensity = 1.475
+
+[connection signal="body_entered" from="." to="PipeStateManager/Placement" method="_on_pipe_node_body_entered"]
+[connection signal="body_exited" from="." to="PipeStateManager/Placement" method="_on_pipe_node_body_exited"]

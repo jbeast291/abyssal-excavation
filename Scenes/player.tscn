@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://bbk0y212ckl8c"]
+[gd_scene load_steps=100 format=3 uid="uid://bbk0y212ckl8c"]
 
 [ext_resource type="Script" uid="uid://1ga22a54xm6f" path="res://assets/scripts/player/player.gd" id="1_vgqql"]
 [ext_resource type="Script" uid="uid://cuml4q40hqd6r" path="res://assets/scripts/StateMachineGeneric/StateMachine.gd" id="2_8erm5"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://c3gd3og7lfyu5" path="res://assets/sprites/player/MiningOutline.png" id="5_fkybt"]
 [ext_resource type="Script" uid="uid://c2o5guk5vkksj" path="res://assets/scripts/player/MovementStates/Land/LandRun.gd" id="5_gymyn"]
 [ext_resource type="PackedScene" uid="uid://cdjhhyifdbf3d" path="res://Components/RotateToMouse/RotateToMouse.tscn" id="5_olqyp"]
-[ext_resource type="PackedScene" uid="uid://3e7qcikegg3y" path="res://Scenes/PipeSystem/PipeNode.tscn" id="5_wpjfl"]
 [ext_resource type="Texture2D" uid="uid://dn8w47qdk5nn" path="res://assets/sprites/player/drill.png" id="6_3smsa"]
 [ext_resource type="Script" uid="uid://d2k1c14fkdpl8" path="res://assets/scripts/player/MovementStates/Land/LandIdle.gd" id="6_pu2lt"]
 [ext_resource type="Script" uid="uid://ceylrbxsx67s2" path="res://assets/scripts/player/MovementStates/Land/LandJump.gd" id="7_ukyrk"]
@@ -957,11 +956,7 @@ script = ExtResource("3_bi64h")
 
 [node name="WrenchRayCast" type="RayCast2D" parent="ToolManager/Wrench"]
 enabled = false
-target_position = Vector2(24, 0)
-
-[node name="PipeNode" parent="ToolManager/Wrench/WrenchRayCast" instance=ExtResource("5_wpjfl")]
-unique_name_in_owner = true
-position = Vector2(21, 0)
+target_position = Vector2(33, 0)
 
 [node name="Drill" type="Node2D" parent="ToolManager" node_paths=PackedStringArray("player", "rotate_to_mouse")]
 script = ExtResource("3_wpjfl")

@@ -16,6 +16,5 @@ func _physics_process(delta: float) -> void:
 	self.global_rotation = 0;
 	pipe_state_manager.physics_update(delta);
 
-func place_pipe(pipe_manager: Node2D) -> void:
-	placement.place(pipe_manager);
-	
+func attempt_place_pipe(pipe_manager: Node2D) -> bool:
+	return placement.attempt_place(pipe_manager);

@@ -26,11 +26,13 @@ func _ready() -> void:
 	assert(main_tile_layer!=null)
 
 func deactivate() -> void:
+	self.visible = false;
 	selector_overlay.visible = false;
 	drill_sprite.visible = false;
 	drill_ray_cast.enabled = false;
 
 func activate() -> void:
+	self.visible = true;
 	drill_ray_cast.enabled = true;
 	selector_overlay.visible = true;
 	drill_sprite.visible = true;
@@ -76,7 +78,7 @@ func _handle_input(delta: float):
 	if !has_target:
 		return;
 	
-	if Input.is_action_pressed("Mine"):
+	if tool_manager.primary_interact_down:
 		selector_overlay.play("drill")
 		selector_overlay.speed_scale = 1/time_to_damage;
 		
@@ -88,3 +90,4 @@ func _handle_input(delta: float):
 	else:
 		selector_overlay.speed_scale = 1;
 		selector_overlay.play("idle")
+	

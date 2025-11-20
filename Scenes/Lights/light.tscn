@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://dros00nqhabix"]
+
+[sub_resource type="GDScript" id="GDScript_dfpic"]
+resource_name = "editorModifier"
+script/source = "@tool
+extends Node2D
+
+@onready var light_texture: Sprite2D = $\"light-texture\";
+
+@export var light_intensity: float = 3.0:
+	set(_light_intensity):
+		light_intensity = _light_intensity;
+		if !is_node_ready():
+			await ready;#godot will set this value before ready is called, but we need light_texture initialized so wait
+		set_light_intensity();
+
+func _ready() -> void:
+	set_light_intensity();
+
+func set_light_intensity():
+	light_texture.material.set_shader_parameter(\"intensity\", light_intensity);
+"
+
+[sub_resource type="Shader" id="Shader_dfpic"]
+code = "shader_type canvas_item;
+render_mode blend_add, unshaded;
+// 2D light shader by HaruYou27.
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, repeat_disable, filter_nearest;
+
+uniform float intensity = 10.0;
+
+void vertex()
+{
+	// Disable modulate color.
+	//COLOR = vec4(1.0);
+}
+
+void fragment() {
+    // Sample the underlying screen color
+    vec3 under_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
+
+	// Make it brighter
+    vec3 final_color = under_color * COLOR.rgb * intensity;
+
+    // Don't forget the alpha value
+     COLOR = vec4(final_color, COLOR.a);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xacm"]
+shader = SubResource("Shader_dfpic")
+shader_parameter/intensity = 1.475
+
+[sub_resource type="Gradient" id="Gradient_5uy0l"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.930435)
+colors = PackedColorArray(0.7703, 0.7493928, 0.73545027, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vdn31"]
+gradient = SubResource("Gradient_5uy0l")
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.852761, 0.874233)
+
+[node name="CustomPointLight" type="BackBufferCopy"]
+z_index = 2000
+z_as_relative = false
+copy_mode = 2
+script = SubResource("GDScript_dfpic")
+
+[node name="light-texture" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0xacm")
+texture = SubResource("GradientTexture2D_vdn31")

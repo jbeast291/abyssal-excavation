@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://81j57nc6nnu2" path="res://assets/sprites/airTile.png" id="4_xrdnt"]
 [ext_resource type="Script" uid="uid://dkf7863d7ba8l" path="res://assets/scripts/player/cameraControl.gd" id="7_lsmp6"]
 [ext_resource type="Script" uid="uid://s482a2jixthb" path="res://assets/scripts/TerrainSystem/FogManager.gd" id="7_wrinw"]
-[ext_resource type="PackedScene" uid="uid://ctquhcgmi3k6x" path="res://Scenes/proto_bore.tscn" id="11_af3po"]
+[ext_resource type="PackedScene" uid="uid://ctquhcgmi3k6x" path="res://proto_bore.tscn" id="11_af3po"]
 
 [sub_resource type="Gradient" id="Gradient_lsmp6"]
 offsets = PackedFloat32Array(0.118309855)
@@ -613,8 +613,6 @@ fill_to = Vector2(0.8803419, 0.14957266)
 
 [node name="Level1" type="Node2D"]
 
-[node name="Pipes" type="Node2D" parent="."]
-
 [node name="BackgroundTEMPORARY" type="Sprite2D" parent="."]
 position = Vector2(487.99997, -74)
 scale = Vector2(14.941406, 2629)
@@ -653,7 +651,8 @@ script = ExtResource("7_wrinw")
 terrainManager = NodePath("../MainTileLayer")
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("1_vk57k")]
+[node name="Player" parent="." node_paths=PackedStringArray("pipe_holder") instance=ExtResource("1_vk57k")]
+pipe_holder = NodePath("../Pipes")
 player_color = Color(0.87595105, 0.7387529, 0.6694787, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
@@ -672,3 +671,5 @@ zoom_speed = 0.25
 
 [node name="ProtoBore" parent="." instance=ExtResource("11_af3po")]
 position = Vector2(-88, -1)
+
+[node name="Pipes" type="Node2D" parent="."]
