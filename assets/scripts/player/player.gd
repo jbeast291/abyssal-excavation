@@ -1,8 +1,10 @@
 extends CharacterBody2D;
 @onready var movement_state_machine: StateMachine = %MovementStateMachine
 @onready var tool_manager: ToolManager = %ToolManager
-#@onready var body_sprite: AnimatedSprite2D = %BodySprite
+@onready var wrench: Wrench = %Wrench
 
+
+@export var pip_holder: Node2D;
 @export var player_color: Color;
 # Mining state
 
@@ -31,6 +33,9 @@ func _physics_process(delta: float):
 	if Input.is_action_just_pressed("Slot2"):
 		tool_manager.change_tool("Wrench");
 	pass
+	
+	if Input.is_action_just_pressed("Jump"):
+		wrench.place_pipe();
 
 func enter_water():
 	movement_state_machine.change_state("Water");

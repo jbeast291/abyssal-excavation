@@ -950,6 +950,7 @@ script = ExtResource("2_qqcod")
 initial_tool = NodePath("Drill")
 
 [node name="Wrench" type="Node2D" parent="ToolManager"]
+unique_name_in_owner = true
 script = ExtResource("3_bi64h")
 
 [node name="RotateToMouse" parent="ToolManager/Wrench" instance=ExtResource("5_olqyp")]
@@ -959,6 +960,7 @@ enabled = false
 target_position = Vector2(24, 0)
 
 [node name="PipeNode" parent="ToolManager/Wrench/WrenchRayCast" instance=ExtResource("5_wpjfl")]
+unique_name_in_owner = true
 position = Vector2(21, 0)
 
 [node name="Drill" type="Node2D" parent="ToolManager" node_paths=PackedStringArray("player", "rotate_to_mouse")]

@@ -613,6 +613,8 @@ fill_to = Vector2(0.8803419, 0.14957266)
 
 [node name="Level1" type="Node2D"]
 
+[node name="Pipes" type="Node2D" parent="."]
+
 [node name="BackgroundTEMPORARY" type="Sprite2D" parent="."]
 position = Vector2(487.99997, -74)
 scale = Vector2(14.941406, 2629)
