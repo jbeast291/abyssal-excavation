@@ -12,4 +12,4 @@
     - https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html#abstract-classes-and-methods
     - https://docs.godotengine.org/en/4.5/classes/class_animatedsprite2d.html
  - Outsourced Code:
-    - Lighting System: https://forum.godotengine.org/t/working-around-godots-2d-light-limitations-for-a-dark-game/81311/9 I took the shader from this godot forum post to get past the godot 15 light limit :/
+    - Lighting System: https://forum.godotengine.org/t/working-around-godots-2d-light-limitations-for-a-dark-game/81311/9 I took the shader from this godot forum post to get past the godot 15 light light. Do note that I've modified the shader slighty to meet my games needs and also made an editor tool to modify shader values in the editor easily
