@@ -4,7 +4,7 @@ var main_tile_layer: TerrainManager;
 var placement_layer: PlacementLayerInfo;
 var fog_layer: FogManager;
 
-var generation_seed: int = 369sd; 
+var generation_seed: int = 369; 
 
 func _init(_main_tile_layer: TerrainManager, _placement_layer: PlacementLayerInfo, _fog_layer: FogManager):
 	main_tile_layer = _main_tile_layer;
