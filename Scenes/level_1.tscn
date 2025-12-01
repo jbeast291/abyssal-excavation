@@ -666,7 +666,7 @@ limit_enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 script = ExtResource("7_lsmp6")
-max_zoom = 3.5
+max_zoom = 8.0
 zoom_speed = 0.25
 
 [node name="ProtoBore" parent="." instance=ExtResource("11_af3po")]
