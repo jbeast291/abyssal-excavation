@@ -33,6 +33,12 @@ func _on_pipe_node_body_entered(_body: Node2D) -> void:
 func _on_pipe_node_body_exited(_body: Node2D) -> void:
 	collision_count -= 1;
 
+func _on_pipe_node_area_entered(_area: Area2D) -> void:
+	collision_count += 1;
+
+func _on_pipe_node_area_exited(_area: Area2D) -> void:
+	collision_count -= 1;
+
 func attempt_place(pipe_manager: Node2D) -> bool:
 	if collision_count > 0:
 		return false;

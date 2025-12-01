@@ -6,7 +6,7 @@ uniform float tolerance = 0.1;
 
 void fragment(){
     vec4 tex_color = texture(TEXTURE, UV);
-    
+
     // check if the pixel color is close to the target color
     float diff = distance(tex_color.rgb, target_color.rgb);
     if (diff < tolerance) {

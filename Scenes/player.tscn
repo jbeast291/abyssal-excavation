@@ -22,98 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://d11sjvvuhncyb" path="res://assets/sprites/player/Head/MainCharacter-Land.png" id="23_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://d0m2ijgun7noj" path="res://assets/sprites/player/Legs/MainCharacter-swim.png" id="24_p1odr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ijsl"]
-atlas = ExtResource("5_fkybt")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p1odr"]
-atlas = ExtResource("5_fkybt")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0gysh"]
-atlas = ExtResource("5_fkybt")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vfarp"]
-atlas = ExtResource("5_fkybt")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6uwr"]
-atlas = ExtResource("5_fkybt")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_83xs0"]
-atlas = ExtResource("5_fkybt")
-region = Rect2(112, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ypfnu"]
-atlas = ExtResource("5_fkybt")
-region = Rect2(128, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuaoq"]
-atlas = ExtResource("5_fkybt")
-region = Rect2(144, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wohnl"]
-atlas = ExtResource("5_fkybt")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_36dho"]
-atlas = ExtResource("5_fkybt")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_p1odr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ijsl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p1odr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0gysh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vfarp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y6uwr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_83xs0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ypfnu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xuaoq")
-}],
-"loop": true,
-"name": &"drill",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wohnl")
-}, {
-"duration": 3.0,
-"texture": SubResource("AtlasTexture_36dho")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 2.0
-}]
-
-[sub_resource type="Gradient" id="Gradient_6444e"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fkybt"]
-gradient = SubResource("Gradient_6444e")
-fill = 1
-fill_from = Vector2(0.525641, 0.4957265)
-fill_to = Vector2(0.8803419, 0.14957266)
-
 [sub_resource type="Animation" id="Animation_olqyp"]
 resource_name = "Bob"
 length = 2.50005
@@ -197,7 +105,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%DrillSprite/../Legs/LegsSprite:animation")
+tracks/0/path = NodePath("../Legs/LegsSprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -209,7 +117,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%DrillSprite/../Legs/LegsSprite:position")
+tracks/1/path = NodePath("../Legs/LegsSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -224,7 +132,7 @@ resource_name = "land_idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%DrillSprite/../Legs/LegsSprite:animation")
+tracks/0/path = NodePath("../Legs/LegsSprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -236,7 +144,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%DrillSprite/../Legs/LegsSprite:position")
+tracks/1/path = NodePath("../Legs/LegsSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -251,7 +159,7 @@ resource_name = "land_run"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%DrillSprite/../Legs/LegsSprite:animation")
+tracks/0/path = NodePath("../Legs/LegsSprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -263,7 +171,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%DrillSprite/../Legs/LegsSprite:position")
+tracks/1/path = NodePath("../Legs/LegsSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -278,7 +186,7 @@ resource_name = "land_walk"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%DrillSprite/../Legs/LegsSprite:position")
+tracks/0/path = NodePath("../Legs/LegsSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -290,7 +198,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%DrillSprite/../Legs/LegsSprite:animation")
+tracks/1/path = NodePath("../Legs/LegsSprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -306,7 +214,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%DrillSprite/../Legs/LegsSprite:position")
+tracks/0/path = NodePath("../Legs/LegsSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -318,7 +226,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%DrillSprite/../Legs/LegsSprite:animation")
+tracks/1/path = NodePath("../Legs/LegsSprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -934,6 +842,98 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ijsl"]
+atlas = ExtResource("5_fkybt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1odr"]
+atlas = ExtResource("5_fkybt")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gysh"]
+atlas = ExtResource("5_fkybt")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfarp"]
+atlas = ExtResource("5_fkybt")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6uwr"]
+atlas = ExtResource("5_fkybt")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83xs0"]
+atlas = ExtResource("5_fkybt")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypfnu"]
+atlas = ExtResource("5_fkybt")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuaoq"]
+atlas = ExtResource("5_fkybt")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wohnl"]
+atlas = ExtResource("5_fkybt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36dho"]
+atlas = ExtResource("5_fkybt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p1odr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ijsl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1odr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gysh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfarp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6uwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83xs0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypfnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuaoq")
+}],
+"loop": true,
+"name": &"drill",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wohnl")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_36dho")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_6444e"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fkybt"]
+gradient = SubResource("Gradient_6444e")
+fill = 1
+fill_from = Vector2(0.525641, 0.4957265)
+fill_to = Vector2(0.8803419, 0.14957266)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3wgy"]
 radius = 5.9999847
 height = 25.997665
@@ -942,6 +942,67 @@ height = 25.997665
 physics_interpolation_mode = 1
 script = ExtResource("1_vgqql")
 player_color = Color(0.99408454, 0.44963652, 0.84675455, 1)
+
+[node name="BodySpriteManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("18_l6n3p")
+
+[node name="PlayerBobbing" type="AnimationPlayer" parent="BodySpriteManager"]
+libraries = {
+&"": SubResource("AnimationLibrary_bi64h")
+}
+autoplay = "Bob"
+
+[node name="DrillSprite" type="AnimatedSprite2D" parent="BodySpriteManager"]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_7ldla")
+frame_progress = 0.45208594
+
+[node name="Legs" type="Node2D" parent="BodySpriteManager"]
+
+[node name="LegsPlayer" type="AnimationPlayer" parent="BodySpriteManager/Legs"]
+unique_name_in_owner = true
+root_node = NodePath("../../DrillSprite")
+libraries = {
+&"": SubResource("AnimationLibrary_vfarp")
+}
+autoplay = "land_run"
+
+[node name="LegsSprite" type="AnimatedSprite2D" parent="BodySpriteManager/Legs"]
+position = Vector2(1, 11.5)
+sprite_frames = SubResource("SpriteFrames_lisdf")
+animation = &"Swim_Swim"
+autoplay = "Land_Idle"
+
+[node name="Torso" type="Node2D" parent="BodySpriteManager"]
+
+[node name="TorsoPlayer" type="AnimationPlayer" parent="BodySpriteManager/Torso"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_wohnl")
+}
+
+[node name="TorsoSprite" type="AnimatedSprite2D" parent="BodySpriteManager/Torso"]
+sprite_frames = SubResource("SpriteFrames_wpjfl")
+animation = &"Land_Idle"
+autoplay = "Land_Idle"
+
+[node name="Head" type="Node2D" parent="BodySpriteManager"]
+
+[node name="HeadPlayer" type="AnimationPlayer" parent="BodySpriteManager/Head"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_nv4vc")
+}
+
+[node name="HeadSprite" type="AnimatedSprite2D" parent="BodySpriteManager/Head"]
+position = Vector2(-0.5, -10)
+sprite_frames = SubResource("SpriteFrames_olqyp")
+animation = &"Up"
 
 [node name="ToolManager" type="Node2D" parent="." node_paths=PackedStringArray("initial_tool")]
 unique_name_in_owner = true
@@ -1022,67 +1083,6 @@ position = Vector2(0, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_fkybt")
 texture_scale = 0.5
-
-[node name="BodySpriteManager" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("18_l6n3p")
-
-[node name="PlayerBobbing" type="AnimationPlayer" parent="BodySpriteManager"]
-libraries = {
-&"": SubResource("AnimationLibrary_bi64h")
-}
-autoplay = "Bob"
-
-[node name="DrillSprite" type="AnimatedSprite2D" parent="BodySpriteManager"]
-unique_name_in_owner = true
-visible = false
-z_index = 10
-position = Vector2(0, 2)
-sprite_frames = SubResource("SpriteFrames_7ldla")
-frame_progress = 0.45208594
-
-[node name="Legs" type="Node2D" parent="BodySpriteManager"]
-
-[node name="LegsPlayer" type="AnimationPlayer" parent="BodySpriteManager/Legs"]
-unique_name_in_owner = true
-root_node = NodePath("../../DrillSprite")
-libraries = {
-&"": SubResource("AnimationLibrary_vfarp")
-}
-autoplay = "land_run"
-
-[node name="LegsSprite" type="AnimatedSprite2D" parent="BodySpriteManager/Legs"]
-position = Vector2(1, 11.5)
-sprite_frames = SubResource("SpriteFrames_lisdf")
-animation = &"Swim_Swim"
-autoplay = "Land_Idle"
-
-[node name="Torso" type="Node2D" parent="BodySpriteManager"]
-
-[node name="TorsoPlayer" type="AnimationPlayer" parent="BodySpriteManager/Torso"]
-unique_name_in_owner = true
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_wohnl")
-}
-
-[node name="TorsoSprite" type="AnimatedSprite2D" parent="BodySpriteManager/Torso"]
-sprite_frames = SubResource("SpriteFrames_wpjfl")
-animation = &"Land_Idle"
-autoplay = "Land_Idle"
-
-[node name="Head" type="Node2D" parent="BodySpriteManager"]
-
-[node name="HeadPlayer" type="AnimationPlayer" parent="BodySpriteManager/Head"]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_nv4vc")
-}
-
-[node name="HeadSprite" type="AnimatedSprite2D" parent="BodySpriteManager/Head"]
-position = Vector2(-0.5, -10)
-sprite_frames = SubResource("SpriteFrames_olqyp")
-animation = &"Up"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
