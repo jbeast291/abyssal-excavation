@@ -121,6 +121,7 @@ SecondaryInteract={
 
 2d_physics/layer_1="main_collision"
 2d_physics/layer_2="mining_overlay_raycast"
+2d_physics/layer_3="PipeNode"
 
 [physics]
 

@@ -9,6 +9,7 @@ class_name Player extends CharacterBody2D;
 # Mining state
 
 func _ready():
+	assert(pipe_holder!=null);
 	#body_sprite.material.set_shader_parameter("replacement_color", player_color)
 	pass
 

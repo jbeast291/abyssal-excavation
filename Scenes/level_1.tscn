@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cifg06gnnttgl"]
+[gd_scene load_steps=20 format=4 uid="uid://cifg06gnnttgl"]
 
 [ext_resource type="PackedScene" uid="uid://bbk0y212ckl8c" path="res://Scenes/player.tscn" id="1_vk57k"]
 [ext_resource type="Texture2D" uid="uid://qduonl5fv87h" path="res://assets/sprites/rockTileset.png" id="2_7p6j4"]
@@ -602,15 +602,6 @@ texture_region_size = Vector2i(8, 8)
 tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_evi0p")
 
-[sub_resource type="Gradient" id="Gradient_evi0p"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_evi0p"]
-gradient = SubResource("Gradient_evi0p")
-fill = 1
-fill_from = Vector2(0.525641, 0.4957265)
-fill_to = Vector2(0.8803419, 0.14957266)
-
 [node name="Level1" type="Node2D"]
 
 [node name="BackgroundTEMPORARY" type="Sprite2D" parent="."]
@@ -654,10 +645,6 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." node_paths=PackedStringArray("pipe_holder") instance=ExtResource("1_vk57k")]
 pipe_holder = NodePath("../Pipes")
 player_color = Color(0.87595105, 0.7387529, 0.6694787, 1)
-
-[node name="PointLight2D" type="PointLight2D" parent="Player"]
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_evi0p")
 
 [node name="MainCamera" type="Camera2D" parent="Player"]
 physics_interpolation_mode = 2

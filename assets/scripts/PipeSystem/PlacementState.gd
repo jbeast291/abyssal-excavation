@@ -2,7 +2,7 @@ extends State
 
 @onready var pipe_node: PipeNode = $"../.."
 @onready var main_collider: CollisionShape2D = %MainCollider
-@onready var sprite: AnimatedSprite2D = %Sprite
+@onready var main_sprite: AnimatedSprite2D = %MainSprite
 @onready var ambient_light: BackBufferCopy = %AmbientLight
 
 var colliding: bool;
@@ -20,11 +20,11 @@ func update(_delta: float) -> void:
 
 func physics_update(_delta: float) -> void:
 	if collision_count == 0: #|| pipe_node.placement_raycast.is_colliding() :
-		sprite.play("Active")
+		main_sprite.play("Active")
 		ambient_light.modulate = Color(0.0, 1.0, 0.0, 1.0)
 
 	else:
-		sprite.play("Disabled")
+		main_sprite.play("Disabled")
 		ambient_light.modulate = Color(1.0, 0.0, 0.0, 1.0)
 
 func _on_pipe_node_body_entered(_body: Node2D) -> void:

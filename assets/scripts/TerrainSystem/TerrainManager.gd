@@ -59,7 +59,7 @@ func activate_debug_mode() -> void:
 ## there is probably performance to be had here
 ## if we only clear fog on the edges of the cave it would reduce operations a lot
 func _reveal_connected_cave(start_cell: Vector2i):
-	var max_cave_reveal_size: int = 1000;# max ammount of cells to check if they are a part of the cave
+	var max_cave_reveal_size: int = 1000;
 	if !_tile_is_air(start_cell):
 		return;
 	
@@ -76,7 +76,6 @@ func _reveal_connected_cave(start_cell: Vector2i):
 			continue;
 		
 		fog_layer.remove_fog_if_exists(current)
-		
 		fog_layer.remove_fog_array(_get_neighbor_tiles_radius(current, fog_view_penetration));
 		
 		set_cell(current, 1, air_explored_atlas_coords);

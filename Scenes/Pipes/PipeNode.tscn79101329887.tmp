@@ -4,15 +4,15 @@
 [ext_resource type="Script" uid="uid://cuml4q40hqd6r" path="res://assets/scripts/StateMachineGeneric/StateMachine.gd" id="2_akphe"]
 [ext_resource type="Script" uid="uid://c6r454d1dhe3c" path="res://assets/scripts/PipeSystem/PlacementState.gd" id="3_hexpe"]
 [ext_resource type="Script" uid="uid://coi1ur4kjlqrn" path="res://assets/scripts/PipeSystem/HoverDragState.gd" id="4_akphe"]
+[ext_resource type="Script" uid="uid://8e4nqn3vlo3p" path="res://assets/scripts/StateMachineGeneric/State.gd" id="4_nlrk5"]
 [ext_resource type="Texture2D" uid="uid://0n246itws115" path="res://assets/sprites/Pipes/PipeNode.png" id="5_dgoxg"]
-[ext_resource type="Script" uid="uid://wgkgy5vhhba6" path="res://Scenes/Pipes/idle.gd" id="5_hexpe"]
 [ext_resource type="PackedScene" uid="uid://dros00nqhabix" path="res://Scenes/Lights/light.tscn" id="6_c6s4e"]
 [ext_resource type="Texture2D" uid="uid://bhpmachoyg71r" path="res://assets/sprites/Pipes/PipeDrag.png" id="6_hexpe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4a32"]
 size = Vector2(14, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hexpe"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlrk5"]
 atlas = ExtResource("6_hexpe")
 region = Rect2(0, 0, 1, 10)
 
@@ -20,7 +20,7 @@ region = Rect2(0, 0, 1, 10)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hexpe")
+"texture": SubResource("AtlasTexture_nlrk5")
 }],
 "loop": true,
 "name": &"default",
@@ -74,8 +74,7 @@ script = ExtResource("4_akphe")
 metadata/_custom_type_script = "uid://8e4nqn3vlo3p"
 
 [node name="Idle" type="Node" parent="PipeStateManager"]
-unique_name_in_owner = true
-script = ExtResource("5_hexpe")
+script = ExtResource("4_nlrk5")
 metadata/_custom_type_script = "uid://8e4nqn3vlo3p"
 
 [node name="MainCollider" type="CollisionShape2D" parent="."]
@@ -84,16 +83,14 @@ shape = SubResource("RectangleShape2D_y4a32")
 
 [node name="RotationScalePoint" type="Node2D" parent="."]
 unique_name_in_owner = true
+scale = Vector2(65.25, 1)
 
-[node name="DragPipe" type="AnimatedSprite2D" parent="RotationScalePoint"]
-unique_name_in_owner = true
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RotationScalePoint"]
 position = Vector2(0.5, 0)
 sprite_frames = SubResource("SpriteFrames_dgoxg")
 
-[node name="PipeDragCollisionCheck" type="RayCast2D" parent="RotationScalePoint"]
-unique_name_in_owner = true
+[node name="RayCast2D" type="RayCast2D" parent="RotationScalePoint"]
 target_position = Vector2(1, 0)
-collision_mask = 5
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true

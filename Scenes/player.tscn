@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://bbk0y212ckl8c"]
+[gd_scene load_steps=103 format=3 uid="uid://bbk0y212ckl8c"]
 
 [ext_resource type="Script" uid="uid://1ga22a54xm6f" path="res://assets/scripts/player/player.gd" id="1_vgqql"]
 [ext_resource type="Script" uid="uid://cuml4q40hqd6r" path="res://assets/scripts/StateMachineGeneric/StateMachine.gd" id="2_8erm5"]
@@ -842,6 +842,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_olqyp"]
+radius = 12.0415945
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ijsl"]
 atlas = ExtResource("5_fkybt")
 region = Rect2(32, 0, 16, 16)
@@ -938,8 +941,18 @@ fill_to = Vector2(0.8803419, 0.14957266)
 radius = 5.9999847
 height = 25.997665
 
+[sub_resource type="Gradient" id="Gradient_evi0p"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_olqyp"]
+gradient = SubResource("Gradient_evi0p")
+fill = 1
+fill_from = Vector2(0.525641, 0.4957265)
+fill_to = Vector2(0.8803419, 0.14957266)
+
 [node name="Player" type="CharacterBody2D"]
 physics_interpolation_mode = 1
+z_index = 2
 script = ExtResource("1_vgqql")
 player_color = Color(0.99408454, 0.44963652, 0.84675455, 1)
 
@@ -1012,12 +1025,19 @@ initial_tool = NodePath("Drill")
 [node name="Wrench" type="Node2D" parent="ToolManager"]
 unique_name_in_owner = true
 script = ExtResource("3_bi64h")
+place_distance = 40.0
 
 [node name="RotateToMouse" parent="ToolManager/Wrench" instance=ExtResource("5_olqyp")]
 
-[node name="WrenchRayCast" type="RayCast2D" parent="ToolManager/Wrench"]
-enabled = false
-target_position = Vector2(33, 0)
+[node name="PlacementHolder" type="Node2D" parent="ToolManager/Wrench"]
+unique_name_in_owner = true
+
+[node name="SnapCollider" type="Area2D" parent="ToolManager/Wrench/PlacementHolder"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToolManager/Wrench/PlacementHolder/SnapCollider"]
+shape = SubResource("CircleShape2D_olqyp")
 
 [node name="Drill" type="Node2D" parent="ToolManager" node_paths=PackedStringArray("player", "rotate_to_mouse")]
 script = ExtResource("3_wpjfl")
@@ -1089,3 +1109,10 @@ unique_name_in_owner = true
 position = Vector2(-0.5, 0)
 rotation = 0.0022676764
 shape = SubResource("CapsuleShape2D_x3wgy")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_olqyp")
+
+[connection signal="area_entered" from="ToolManager/Wrench/PlacementHolder/SnapCollider" to="ToolManager/Wrench" method="_on_snap_collider_area_entered"]
+[connection signal="area_exited" from="ToolManager/Wrench/PlacementHolder/SnapCollider" to="ToolManager/Wrench" method="_on_snap_collider_area_exited"]
