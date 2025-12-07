@@ -82,11 +82,11 @@ func on_primary_interact_just_pressed() -> void:
 		return;
 	if(active_state == state.placement):
 		if (held_pipe_node.attempt_place_pipe(player.pipe_holder)):
-			held_pipe_node = null;
-			create_pipe_node_on_tool();
 			if(is_dragging):
 				is_dragging = false;
 				dragged_pipe.finish_pipe_connect(held_pipe_node);
+			held_pipe_node = null;
+			create_pipe_node_on_tool();
 
 	elif(active_state == state.hover):
 		if(is_dragging):

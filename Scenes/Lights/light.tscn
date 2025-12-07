@@ -47,7 +47,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xacm"]
 shader = SubResource("Shader_dfpic")
-shader_parameter/intensity = 0.46
+shader_parameter/intensity = 3.0
 
 [sub_resource type="Gradient" id="Gradient_5uy0l"]
 interpolation_color_space = 1
