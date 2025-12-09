@@ -33,7 +33,7 @@ func _generate_terrain():
 	_generate_caves(stone_coords, generation_seed);
 	placement_layer.queue_free();
 
-func _generate_caves(stone_coords: Array[Vector2i], noise_seed: int, threshold: float = 0.57, noise_scale: float = 0.05):
+func _generate_caves(stone_coords: Array[Vector2i], noise_seed: int, threshold: float = 0.53, noise_scale: float = 0.05):
 	var noise: FastNoiseLite = FastNoiseLite.new()
 	noise.seed = noise_seed;
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN

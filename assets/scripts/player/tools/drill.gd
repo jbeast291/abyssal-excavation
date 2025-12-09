@@ -22,7 +22,7 @@ var has_target: bool;
 func _ready() -> void:
 	assert(player!=null);
 	main_tile_layer = TerrainManager.main;
-	drill_speed = 4;
+	drill_speed = 20;
 	assert(main_tile_layer!=null)
 
 func deactivate() -> void:
