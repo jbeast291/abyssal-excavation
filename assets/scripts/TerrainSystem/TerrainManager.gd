@@ -2,6 +2,7 @@ class_name TerrainManager extends TileMapLayer;
 
 @export var placement_layer: PlacementLayerInfo;
 @export var fog_layer: FogManager;
+@export var large_area_holder: Node2D;
 
 @export var fog_view_penetration: int;
 @export var debug_mode: bool = false;
@@ -16,10 +17,11 @@ static var main: TerrainManager;
 func _ready():
 	assert(placement_layer!=null);
 	assert(fog_layer!=null);
+	assert(large_area_holder!=null);
 	main = self;
 	
-	terrain_generator = TerrainGenerator.new(self, placement_layer, fog_layer);
-	terrain_generator._generate_terrain();
+	terrain_generator = TerrainGenerator.new(self, placement_layer, fog_layer, large_area_holder);
+	terrain_generator.generate_terrain();
 	terrain_generator = null; # godot will free the genertor from memory after this
 	if debug_mode:
 		activate_debug_mode();
