@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkgg5sxw2sgs5"]
+[gd_scene load_steps=4 format=3 uid="uid://bkgg5sxw2sgs5"]
 
 [ext_resource type="Script" uid="uid://c2h0q5uny7wwy" path="res://assets/scripts/UiController.gd" id="1_w371h"]
+[ext_resource type="FontFile" uid="uid://b22bsyecurknv" path="res://assets/Orbito.otf" id="2_nxvpl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3iaii"]
-font_size = 46
+font = ExtResource("2_nxvpl")
+font_size = 30
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_w371h")
@@ -13,7 +17,6 @@ offset_left = 19.0
 offset_top = 20.0
 offset_right = 451.0
 offset_bottom = 235.0
-text = "Oil: %oil%
-Time Remaining: %time%
-"
+text = "Time Left: %time%
+Oil: %oil%"
 label_settings = SubResource("LabelSettings_3iaii")

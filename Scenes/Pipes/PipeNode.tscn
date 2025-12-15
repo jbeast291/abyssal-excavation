@@ -125,7 +125,12 @@ sprite_frames = SubResource("SpriteFrames_uban5")
 autoplay = "default"
 frame_progress = 0.6630312
 
+[node name="OilDrillLoop" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.5
+
 [connection signal="area_entered" from="." to="PipeStateManager/Placement" method="_on_pipe_node_area_entered"]
 [connection signal="area_exited" from="." to="PipeStateManager/Placement" method="_on_pipe_node_area_exited"]
 [connection signal="body_entered" from="." to="PipeStateManager/Placement" method="_on_pipe_node_body_entered"]
 [connection signal="body_exited" from="." to="PipeStateManager/Placement" method="_on_pipe_node_body_exited"]
+[connection signal="timeout" from="OilDrillLoop" to="PipeStateManager/Active" method="_on_oil_drill_loop_timeout"]
