@@ -1,5 +1,7 @@
-[gd_scene load_steps=22 format=4 uid="uid://cifg06gnnttgl"]
+[gd_scene load_steps=24 format=4 uid="uid://cifg06gnnttgl"]
 
+[ext_resource type="Script" uid="uid://cvf1bjt3boecf" path="res://Scenes/GameManager.gd" id="1_6ioyp"]
+[ext_resource type="PackedScene" uid="uid://bkgg5sxw2sgs5" path="res://Scenes/UI.tscn" id="1_6r07y"]
 [ext_resource type="PackedScene" uid="uid://bbk0y212ckl8c" path="res://Scenes/player.tscn" id="1_vk57k"]
 [ext_resource type="Texture2D" uid="uid://qduonl5fv87h" path="res://assets/sprites/rockTileset.png" id="2_7p6j4"]
 [ext_resource type="Texture2D" uid="uid://b0gchaxve5mbj" path="res://assets/sprites/player/tileHelpers.png" id="2_evi0p"]
@@ -599,12 +601,20 @@ sources/1 = SubResource("TileSetAtlasSource_wrinw")
 texture = ExtResource("4_6444e")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 
 [sub_resource type="TileSet" id="TileSet_lsmp6"]
 tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 8
 sources/0 = SubResource("TileSetAtlasSource_evi0p")
 
 [node name="Level1" type="Node2D"]
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("1_6ioyp")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_6r07y")]
 
 [node name="BackgroundTEMPORARY" type="Sprite2D" parent="."]
 position = Vector2(311, 1227)
@@ -639,6 +649,7 @@ fog_view_penetration = 3
 metadata/_edit_lock_ = true
 
 [node name="FogLayer" type="TileMapLayer" parent="TileLayers" node_paths=PackedStringArray("terrainManager")]
+z_index = 100
 position = Vector2(0, -32)
 tile_set = SubResource("TileSet_lsmp6")
 script = ExtResource("7_wrinw")
@@ -706,6 +717,10 @@ root_node = NodePath("PipeNode")
 [node name="PipeNode" parent="Pipes" instance=ExtResource("10_chwpn")]
 position = Vector2(103, -44)
 is_root = true
+
+[node name="PipeNode2" parent="Pipes" instance=ExtResource("10_chwpn")]
+position = Vector2(158, 140)
+is_oil_well = true
 
 [editable path="TileLayers/LargeAreaHolder/TerrainRegion"]
 [editable path="TileLayers/LargeAreaHolder/TerrainRegion2"]

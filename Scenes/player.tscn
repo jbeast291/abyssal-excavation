@@ -1,8 +1,9 @@
-[gd_scene load_steps=103 format=3 uid="uid://bbk0y212ckl8c"]
+[gd_scene load_steps=105 format=3 uid="uid://bbk0y212ckl8c"]
 
 [ext_resource type="Script" uid="uid://1ga22a54xm6f" path="res://assets/scripts/player/player.gd" id="1_vgqql"]
 [ext_resource type="Script" uid="uid://cuml4q40hqd6r" path="res://assets/scripts/StateMachineGeneric/StateMachine.gd" id="2_8erm5"]
 [ext_resource type="Script" uid="uid://gxxysj4n2vnv" path="res://assets/scripts/player/tool_manager.gd" id="2_qqcod"]
+[ext_resource type="Script" uid="uid://pa7vaqobgdb2" path="res://Scenes/fog_detector.gd" id="2_wpjfl"]
 [ext_resource type="Script" uid="uid://x0dwycwqf13p" path="res://assets/scripts/player/tools/Wrench.gd" id="3_bi64h"]
 [ext_resource type="Script" uid="uid://dp70m8l8bcx3u" path="res://assets/scripts/player/MovementStates/Land/LandStateMachine.gd" id="3_f1ek2"]
 [ext_resource type="Script" uid="uid://dts40270a0kh5" path="res://assets/scripts/player/tools/drill.gd" id="3_wpjfl"]
@@ -21,6 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://bkxckke2sbwu7" path="res://assets/sprites/player/Torso/MainCharacter-Land.png" id="22_bi64h"]
 [ext_resource type="Texture2D" uid="uid://d11sjvvuhncyb" path="res://assets/sprites/player/Head/MainCharacter-Land.png" id="23_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://d0m2ijgun7noj" path="res://assets/sprites/player/Legs/MainCharacter-swim.png" id="24_p1odr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wpjfl"]
+radius = 17.0
 
 [sub_resource type="Animation" id="Animation_olqyp"]
 resource_name = "Bob"
@@ -956,6 +960,15 @@ z_index = 2
 script = ExtResource("1_vgqql")
 player_color = Color(0.99408454, 0.44963652, 0.84675455, 1)
 
+[node name="FogDetector" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("2_wpjfl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FogDetector"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_wpjfl")
+
 [node name="BodySpriteManager" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("18_l6n3p")
@@ -1114,5 +1127,6 @@ shape = SubResource("CapsuleShape2D_x3wgy")
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_olqyp")
 
+[connection signal="body_entered" from="FogDetector" to="FogDetector" method="_on_body_entered"]
 [connection signal="area_entered" from="ToolManager/Wrench/PlacementHolder/SnapCollider" to="ToolManager/Wrench" method="_on_snap_collider_area_entered"]
 [connection signal="area_exited" from="ToolManager/Wrench/PlacementHolder/SnapCollider" to="ToolManager/Wrench" method="_on_snap_collider_area_exited"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkgg5sxw2sgs5"]
+
+[ext_resource type="Script" uid="uid://c2h0q5uny7wwy" path="res://assets/scripts/UiController.gd" id="1_w371h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3iaii"]
+font_size = 46
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_w371h")
+
+[node name="StatusLabel" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 20.0
+offset_right = 451.0
+offset_bottom = 235.0
+text = "Oil: %oil%
+Time Remaining: %time%
+"
+label_settings = SubResource("LabelSettings_3iaii")

@@ -7,6 +7,8 @@ var large_area_holder: Node2D;
 
 var generation_seed: int = 369; 
 
+const disable_regions: bool = true;
+
 func _init(_main_tile_layer: TerrainManager, _placement_layer: PlacementLayerInfo, _fog_layer: FogManager, _large_area_holder: Node2D):
 	main_tile_layer = _main_tile_layer;
 	placement_layer = _placement_layer;
@@ -32,18 +34,19 @@ func generate_terrain():
 		if cellAtlasCoords == placement_layer.air_atlas_coords:
 			main_tile_layer._set_cell_air(cell, true);
 	
-	var terrain_regions: Array[TerrainRegion] = _get_terrain_regions(large_area_holder);
-	for region in terrain_regions:
-		var pos_top_left: Vector2 = Vector2(region.position.x + region.left, region.position.y + region.top);
-		var pos_bot_right: Vector2 = Vector2(pos_top_left.x + region.width, pos_top_left.y + region.height);
-		
-		var cell_top_left: Vector2i = main_tile_layer.local_to_map(main_tile_layer.to_local(pos_top_left))
-		var cell_bot_right: Vector2i = main_tile_layer.local_to_map(main_tile_layer.to_local(pos_bot_right));
-		for y in range(cell_top_left.y, cell_bot_right.y):
-			for x in range(cell_top_left.x, cell_bot_right.x):
-				var cell := Vector2i(x, y)
-				stone_coords.append(cell);
-	large_area_holder.queue_free();
+	if(!disable_regions):
+		var terrain_regions: Array[TerrainRegion] = _get_terrain_regions(large_area_holder);
+		for region in terrain_regions:
+			var pos_top_left: Vector2 = Vector2(region.position.x + region.left, region.position.y + region.top);
+			var pos_bot_right: Vector2 = Vector2(pos_top_left.x + region.width, pos_top_left.y + region.height);
+			
+			var cell_top_left: Vector2i = main_tile_layer.local_to_map(main_tile_layer.to_local(pos_top_left))
+			var cell_bot_right: Vector2i = main_tile_layer.local_to_map(main_tile_layer.to_local(pos_bot_right));
+			for y in range(cell_top_left.y, cell_bot_right.y):
+				for x in range(cell_top_left.x, cell_bot_right.x):
+					var cell := Vector2i(x, y)
+					stone_coords.append(cell);
+		large_area_holder.queue_free();
 	
 	main_tile_layer.set_cells_terrain_connect(stone_coords + stone_no_gen_coords, 0, 0, false)
 	_generate_fog(main_tile_layer.get_used_cells());

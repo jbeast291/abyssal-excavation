@@ -1,6 +1,7 @@
 class_name PipeNode extends Area2D
 
 @export var is_root: bool = false;
+@export var is_oil_well: bool = false;
 
 const PIPE_CONNECTOR = preload("uid://cn2inlq5chyb5")
 @onready var selector_sprite: AnimatedSprite2D = %SelectorSprite
@@ -18,7 +19,12 @@ var is_drag_pipe: bool = false;
 var drag_point: Node2D;
 
 func _ready() -> void:
+	assert(!is_root || !is_oil_well);
 	pipe_active = is_root;
+	if(is_root):
+		pipe_state_manager.change_state(active.name);
+	else:
+		pipe_state_manager.change_state(idle.name);
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -31,15 +37,15 @@ func attempt_place_pipe(pipe_manager: Node2D) -> bool:
 	return placement.attempt_place(pipe_manager);
 
 func hoverPipe() -> bool:
-	pipe_state_manager.change_state(hover.name)
+	pipe_state_manager.change_state(hover.name);
 	selector_sprite.visible = true;
 	return true;
 
 func unhoverPipe() -> bool:
 	if(pipe_active):
-		pipe_state_manager.change_state(active.name)
+		pipe_state_manager.change_state(active.name);
 	else:
-		pipe_state_manager.change_state(idle.name)
+		pipe_state_manager.change_state(idle.name);
 	selector_sprite.visible = false;
 	return true;
 
@@ -77,11 +83,11 @@ func cancel_pipe_connect() -> void:
 	drag_point = self;
 	pipe_connector.set_raycast_active_state(false);
 	handle_drag_point();
-	pipe_connector.queue_free()
+	pipe_connector.queue_free();
 
 func is_drag_valid() -> bool:
 	return pipe_connector.is_connector_colliding();
 
 func activate_pipe() -> void:
 	pipe_active = true;
-	pipe_state_manager.change_state(active.name)
+	pipe_state_manager.change_state(active.name);
