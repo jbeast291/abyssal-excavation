@@ -31,7 +31,10 @@ func mine_cell(cell_pos: Vector2i):
 	var cell_data = get_cell_tile_data(cell_pos);
 	if cell_data == null:
 		return;
-		
+	
+	if cell_data.terrain == 1:
+		return;
+	
 	_set_cell_air(cell_pos, true);
 	_reveal_connected_cave(cell_pos);
 

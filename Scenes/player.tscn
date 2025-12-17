@@ -1067,7 +1067,7 @@ collision_mask = 2
 [node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
 script = ExtResource("2_8erm5")
-initial_state = NodePath("Land")
+initial_state = NodePath("Water")
 metadata/_custom_type_script = "uid://cuml4q40hqd6r"
 
 [node name="Land" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("player", "initial_state")]

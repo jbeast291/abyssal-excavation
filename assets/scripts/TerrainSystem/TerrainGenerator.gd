@@ -7,7 +7,7 @@ var large_area_holder: Node2D;
 
 var generation_seed: int = 369; 
 
-const disable_regions: bool = true;
+const disable_regions: bool = false;
 
 func _init(_main_tile_layer: TerrainManager, _placement_layer: PlacementLayerInfo, _fog_layer: FogManager, _large_area_holder: Node2D):
 	main_tile_layer = _main_tile_layer;
@@ -18,10 +18,17 @@ func _init(_main_tile_layer: TerrainManager, _placement_layer: PlacementLayerInf
 	assert(placement_layer!=null);
 	assert(fog_layer!=null);
 	assert(large_area_holder!=null);
+	generation_seed = get_random_seed();
+
+func get_random_seed() -> int: 
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	return rng.randi_range(1, 999);
 
 func generate_terrain():
-	var stone_coords: Array[Vector2i] = []
-	var stone_no_gen_coords: Array[Vector2i] = []
+	var stone_coords: Array[Vector2i] = [];
+	var stone_no_gen_coords: Array[Vector2i] = [];
+	var bedrock_coords: Array[Vector2i] = [];
 	
 	var placement_cells: Array[Vector2i] = placement_layer.get_used_cells();
 	
@@ -33,6 +40,8 @@ func generate_terrain():
 			stone_no_gen_coords.append(cell);
 		if cellAtlasCoords == placement_layer.air_atlas_coords:
 			main_tile_layer._set_cell_air(cell, true);
+		if cellAtlasCoords == placement_layer.bedrock_atlas_coords:
+			bedrock_coords.append(cell);
 	
 	if(!disable_regions):
 		var terrain_regions: Array[TerrainRegion] = _get_terrain_regions(large_area_holder);
@@ -48,7 +57,8 @@ func generate_terrain():
 					stone_coords.append(cell);
 		large_area_holder.queue_free();
 	
-	main_tile_layer.set_cells_terrain_connect(stone_coords + stone_no_gen_coords, 0, 0, false)
+	main_tile_layer.set_cells_terrain_connect(bedrock_coords, 0, 1, false);
+	main_tile_layer.set_cells_terrain_connect(stone_coords + stone_no_gen_coords, 0, 0, false);
 	_generate_fog(main_tile_layer.get_used_cells());
 	_generate_caves(stone_coords, generation_seed);
 	placement_layer.queue_free();
