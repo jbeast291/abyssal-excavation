@@ -21,7 +21,7 @@ func _process(delta: float):
 func _physics_process(delta: float):
 	movement_state_machine.physics_update(delta);
 	tool_manager.physics_update(delta);
-	
+
 	if Input.is_action_just_pressed("Slot1"):
 		tool_manager.change_tool("Drill");
 	

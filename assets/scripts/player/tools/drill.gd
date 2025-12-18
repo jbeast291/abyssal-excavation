@@ -8,6 +8,7 @@ class_name Drill extends Tool
 @export var rotate_to_mouse: Component;
 
 var main_tile_layer;
+var base_drill_speed = 5;
 var drill_speed: float:
 	get:
 		return drill_speed;
@@ -22,7 +23,7 @@ var has_target: bool;
 func _ready() -> void:
 	assert(player!=null);
 	main_tile_layer = TerrainManager.main;
-	drill_speed = 20;
+	drill_speed = base_drill_speed;
 	assert(main_tile_layer!=null)
 
 func deactivate() -> void:
@@ -39,6 +40,7 @@ func activate() -> void:
 
 func physics_update(delta: float) -> void:
 	rotate_to_mouse.physics_update(delta);
+	drill_speed = base_drill_speed + GameManager.main.oil_value/100
 	_update_target();
 	_handle_input(delta);
 	_handle_drill_sprite();

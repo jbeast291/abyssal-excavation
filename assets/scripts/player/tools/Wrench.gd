@@ -64,6 +64,8 @@ func physics_update(delta: float) -> void:
 
 func placement_distance_handle() -> void:
 	var mouse_distance: float = self.global_position.distance_to(get_global_mouse_position());
+	if(Input.get_connected_joypads().size() > 0):
+		mouse_distance = 100;
 	mouse_distance = clamp(mouse_distance, 5.0, place_distance);
 	placement_holder.position.x = mouse_distance;
 
