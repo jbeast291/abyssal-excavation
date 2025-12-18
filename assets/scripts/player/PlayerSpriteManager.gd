@@ -1,5 +1,7 @@
 class_name PlayerSpriteManager extends Node2D
 
+@onready var drill_sprite: AnimatedSprite2D = %DrillSprite
+
 #TODO: remove any bobbing on the players torso from the sprites, its just a limitiation with this method
 
 var legs_player: AnimationPlayer;

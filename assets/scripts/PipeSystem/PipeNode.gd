@@ -11,6 +11,8 @@ const PIPE_CONNECTOR = preload("uid://cn2inlq5chyb5")
 @onready var idle: State = %Idle
 @onready var active: Node = %Active
 
+var previous_state: State;
+
 var connected_pipes: Array[PipeNode] = [];
 var pipe_active: bool = false;
 
@@ -23,9 +25,10 @@ func _ready() -> void:
 	pipe_active = is_root;
 	if(is_root):
 		pipe_state_manager.change_state(active.name);
-	else:
+	elif(is_oil_well):
 		pipe_state_manager.change_state(idle.name);
-	pass
+	else:
+		pipe_state_manager.change_state(placement.name);
 
 func _physics_process(delta: float) -> void:
 	self.global_rotation = 0;
@@ -37,6 +40,7 @@ func attempt_place_pipe(pipe_manager: Node2D) -> bool:
 	return placement.attempt_place(pipe_manager);
 
 func hoverPipe() -> bool:
+	previous_state = pipe_state_manager.current_state;
 	pipe_state_manager.change_state(hover.name);
 	selector_sprite.visible = true;
 	return true;

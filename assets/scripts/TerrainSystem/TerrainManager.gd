@@ -32,10 +32,8 @@ func mine_cell(cell_pos: Vector2i):
 	if cell_data == null:
 		return;
 	
-	if cell_data.terrain == 1:
-		return;
-	
-	_set_cell_air(cell_pos, true);
+	if cell_data.terrain != 1: # isnt bedrock
+		_set_cell_air(cell_pos, true);
 	_reveal_connected_cave(cell_pos);
 
 

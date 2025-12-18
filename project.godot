@@ -123,6 +123,8 @@ SecondaryInteract={
 2d_physics/layer_2="mining_overlay_raycast"
 2d_physics/layer_3="PipeNode"
 2d_physics/layer_4="Fog_Layer"
+2d_physics/layer_5="PipeBlock"
+2d_physics/layer_6="Player"
 
 [physics]
 

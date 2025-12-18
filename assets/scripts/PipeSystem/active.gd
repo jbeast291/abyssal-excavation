@@ -14,9 +14,11 @@ const active_color: Color = Color(0.0, 1.0, 0.0, 1.0);
 func enter() -> void:
 	main_sprite.play("Active")
 	if(pipe_node.is_oil_well):
+		print("started timer")
 		ambient_light.modulate = oil_well_active;
 		main_sprite.modulate = Color(3.407, 0.0, 3.407, 1.0)
 		if(!timer_started):
+			
 			oil_drill_loop.start();
 			timer_started = true;
 	else:

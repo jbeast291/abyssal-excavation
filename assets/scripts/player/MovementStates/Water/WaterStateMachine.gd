@@ -25,6 +25,7 @@ func enter() -> void:
 func exit() -> void:
 	super.exit();
 	collider.shape.height = collider_original_height;
+	body_sprite_manager.rotation = 0;
 
 func physics_update(delta: float) -> void:
 	sprite_rotation(delta);

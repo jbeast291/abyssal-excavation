@@ -8,7 +8,6 @@ func _ready():
 	assert(player != null)
 	
 func enter() -> void:
-	print("enter")
 	body_sprite_manager.play_leg_animation("swim_swim");
 	body_sprite_manager.play_torso_animation("swim_swim");
 	body_sprite_manager.play_head_animation("up");

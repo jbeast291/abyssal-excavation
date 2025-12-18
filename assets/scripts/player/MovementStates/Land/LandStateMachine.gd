@@ -1,4 +1,4 @@
-extends StateMachine
+class_name LandStateMachine extends StateMachine
 
 @onready var body_sprite_manager: PlayerSpriteManager = %BodySpriteManager
 
@@ -39,7 +39,9 @@ func handle_sub_state() -> void:
 
 func apply_gravity():
 	player.velocity.y += land_gravity;
-	
+
+func apply_upwards_force(force: int):
+	player.velocity.y -= force;
 
 func handle_sprite_direction():
 	var current_input_dir = Input.get_axis("Left", "Right");

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctquhcgmi3k6x"]
 
-[ext_resource type="Script" uid="uid://dng1tcyubwmq1" path="res://Scenes/proto_bore.gd" id="1_3dn18"]
+[ext_resource type="Script" uid="uid://dng1tcyubwmq1" path="res://Scenes/DEPRECATED/proto_bore.gd" id="1_3dn18"]
 [ext_resource type="Script" uid="uid://csb0fx7jahwde" path="res://Scenes/DrillHead.gd" id="1_jh2rb"]
 
 [sub_resource type="Gradient" id="Gradient_r4ikp"]

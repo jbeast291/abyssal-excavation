@@ -1,7 +1,8 @@
-[gd_scene load_steps=105 format=3 uid="uid://bbk0y212ckl8c"]
+[gd_scene load_steps=107 format=3 uid="uid://bbk0y212ckl8c"]
 
 [ext_resource type="Script" uid="uid://1ga22a54xm6f" path="res://assets/scripts/player/player.gd" id="1_vgqql"]
 [ext_resource type="Script" uid="uid://cuml4q40hqd6r" path="res://assets/scripts/StateMachineGeneric/StateMachine.gd" id="2_8erm5"]
+[ext_resource type="Script" uid="uid://bmrct0usqvkmc" path="res://assets/scripts/player/Player_Trigger.gd" id="2_bi64h"]
 [ext_resource type="Script" uid="uid://gxxysj4n2vnv" path="res://assets/scripts/player/tool_manager.gd" id="2_qqcod"]
 [ext_resource type="Script" uid="uid://pa7vaqobgdb2" path="res://Scenes/fog_detector.gd" id="2_wpjfl"]
 [ext_resource type="Script" uid="uid://x0dwycwqf13p" path="res://assets/scripts/player/tools/Wrench.gd" id="3_bi64h"]
@@ -23,8 +24,27 @@
 [ext_resource type="Texture2D" uid="uid://d11sjvvuhncyb" path="res://assets/sprites/player/Head/MainCharacter-Land.png" id="23_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://d0m2ijgun7noj" path="res://assets/sprites/player/Legs/MainCharacter-swim.png" id="24_p1odr"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wpjfl"]
+radius = 6.0
+height = 32.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpjfl"]
 radius = 17.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ph33w"]
+atlas = ExtResource("6_3smsa")
+region = Rect2(0, 0, 24, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ldla"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ph33w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_olqyp"]
 resource_name = "Bob"
@@ -89,46 +109,31 @@ _data = {
 &"RESET": SubResource("Animation_wpjfl")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ph33w"]
-atlas = ExtResource("6_3smsa")
-region = Rect2(0, 0, 24, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7ldla"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ph33w")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="Animation" id="Animation_p1odr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Legs/LegsSprite:animation")
+tracks/0/path = NodePath("%BodySpriteManager/Legs/LegsSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Swim_Swim"]
+"update": 0,
+"values": [Vector2(1, 11.5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Legs/LegsSprite:position")
+tracks/1/path = NodePath("%BodySpriteManager/Legs/LegsSprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 11.5)]
+"update": 1,
+"values": [&"Land_Walk"]
 }
 
 [sub_resource type="Animation" id="Animation_bi64h"]
@@ -136,7 +141,7 @@ resource_name = "land_idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Legs/LegsSprite:animation")
+tracks/0/path = NodePath("%BodySpriteManager/Legs/LegsSprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -148,14 +153,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Legs/LegsSprite:position")
+tracks/1/path = NodePath("%BodySpriteManager/Legs/LegsSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-0.5, 9.5)]
+"values": [Vector2(-0.5, 8.5)]
 }
 
 [sub_resource type="Animation" id="Animation_vfarp"]
@@ -163,7 +168,7 @@ resource_name = "land_run"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Legs/LegsSprite:animation")
+tracks/0/path = NodePath("%BodySpriteManager/Legs/LegsSprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -175,14 +180,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Legs/LegsSprite:position")
+tracks/1/path = NodePath("%BodySpriteManager/Legs/LegsSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-1.5, 9.5)]
+"values": [Vector2(-0.5, 8.5)]
 }
 
 [sub_resource type="Animation" id="Animation_0gysh"]
@@ -190,26 +195,26 @@ resource_name = "land_walk"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Legs/LegsSprite:position")
+tracks/0/path = NodePath("%BodySpriteManager/Legs/LegsSprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-0.5, 9.5)]
+"update": 1,
+"values": [&"Land_Walk"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Legs/LegsSprite:animation")
+tracks/1/path = NodePath("%BodySpriteManager/Legs/LegsSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Land_Walk"]
+"update": 0,
+"values": [Vector2(-0.5, 8.5)]
 }
 
 [sub_resource type="Animation" id="Animation_2ijsl"]
@@ -218,19 +223,19 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Legs/LegsSprite:position")
+tracks/0/path = NodePath("%BodySpriteManager/Legs/LegsSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.5, 12)]
+"values": [Vector2(0.5, 11)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Legs/LegsSprite:animation")
+tracks/1/path = NodePath("%BodySpriteManager/Legs/LegsSprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -960,6 +965,14 @@ z_index = 2
 script = ExtResource("1_vgqql")
 player_color = Color(0.99408454, 0.44963652, 0.84675455, 1)
 
+[node name="TriggerCollider" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("2_bi64h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerCollider"]
+shape = SubResource("CapsuleShape2D_wpjfl")
+
 [node name="FogDetector" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 8
@@ -968,6 +981,13 @@ script = ExtResource("2_wpjfl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FogDetector"]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_wpjfl")
+
+[node name="DrillSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_7ldla")
+frame_progress = 0.45208594
 
 [node name="BodySpriteManager" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -979,19 +999,11 @@ libraries = {
 }
 autoplay = "Bob"
 
-[node name="DrillSprite" type="AnimatedSprite2D" parent="BodySpriteManager"]
-unique_name_in_owner = true
-visible = false
-z_index = 10
-position = Vector2(0, 2)
-sprite_frames = SubResource("SpriteFrames_7ldla")
-frame_progress = 0.45208594
-
 [node name="Legs" type="Node2D" parent="BodySpriteManager"]
 
 [node name="LegsPlayer" type="AnimationPlayer" parent="BodySpriteManager/Legs"]
 unique_name_in_owner = true
-root_node = NodePath("../../DrillSprite")
+root_node = NodePath("../../../DrillSprite")
 libraries = {
 &"": SubResource("AnimationLibrary_vfarp")
 }
@@ -1000,7 +1012,7 @@ autoplay = "land_run"
 [node name="LegsSprite" type="AnimatedSprite2D" parent="BodySpriteManager/Legs"]
 position = Vector2(1, 11.5)
 sprite_frames = SubResource("SpriteFrames_lisdf")
-animation = &"Swim_Swim"
+animation = &"Land_Walk"
 autoplay = "Land_Idle"
 
 [node name="Torso" type="Node2D" parent="BodySpriteManager"]
@@ -1067,7 +1079,7 @@ collision_mask = 2
 [node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
 script = ExtResource("2_8erm5")
-initial_state = NodePath("Water")
+initial_state = NodePath("Land")
 metadata/_custom_type_script = "uid://cuml4q40hqd6r"
 
 [node name="Land" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("player", "initial_state")]

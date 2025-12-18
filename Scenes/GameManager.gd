@@ -2,7 +2,7 @@ class_name GameManager extends Node2D
 
 static var main: GameManager; 
 
-var time_left_seconds: float = 300;
+var time_left_seconds: float = 600;
 var current_time: float;
 
 var oil_value: float = 0;

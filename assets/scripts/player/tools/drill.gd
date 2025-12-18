@@ -42,7 +42,6 @@ func physics_update(delta: float) -> void:
 	_update_target();
 	_handle_input(delta);
 	_handle_drill_sprite();
-	drill_sprite.visible = true;
 
 func _update_target():	
 	if drill_ray_cast.is_colliding():
@@ -69,6 +68,7 @@ func _update_target():
 		target_percent_for_hit = 0;
 		
 func _handle_drill_sprite():
+	drill_sprite.rotation = self.rotation;
 	if self.rotation < -PI/2 || self.rotation > PI/2 :
 		drill_sprite.flip_v = true;
 	else:

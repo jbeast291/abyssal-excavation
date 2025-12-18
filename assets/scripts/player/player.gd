@@ -3,6 +3,8 @@ class_name Player extends CharacterBody2D;
 @onready var tool_manager: ToolManager = %ToolManager
 @onready var wrench: Wrench = %Wrench
 
+@onready var land: LandStateMachine = $MovementStateMachine/Land
+@onready var water: StateMachine = $MovementStateMachine/Water
 
 @export var pipe_holder: Node2D;
 @export var player_color: Color;
@@ -19,8 +21,6 @@ func _process(delta: float):
 func _physics_process(delta: float):
 	movement_state_machine.physics_update(delta);
 	tool_manager.physics_update(delta);
-	if Input.is_action_just_pressed("DEBUG_SwitchMotorMode"):
-		enter_water();
 	
 	if Input.is_action_just_pressed("Slot1"):
 		tool_manager.change_tool("Drill");
@@ -40,5 +40,13 @@ func _physics_process(delta: float):
 	if Input.is_action_just_released("SecondaryInteract"):
 		tool_manager.on_secondary_interact_just_released();
 
-func enter_water():
+func get_motor_state() -> State:
+	return movement_state_machine.current_state;
+
+func set_swimming() -> void:
 	movement_state_machine.change_state("Water");
+
+func set_walking(apply_force_on_walking: bool) -> void:
+	movement_state_machine.change_state("Land");
+	if(apply_force_on_walking):
+		land.apply_upwards_force(150);
