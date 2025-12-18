@@ -1676,7 +1676,7 @@ sources/0 = SubResource("TileSetAtlasSource_evi0p")
 interpolation_mode = 2
 interpolation_color_space = 2
 offsets = PackedFloat32Array(0.56696427, 1)
-colors = PackedColorArray(0.38039216, 0, 0.67058825, 0.42352942, 0.38039216, 0, 0.67058825, 0)
+colors = PackedColorArray(0.66785127, 0.42293024, 1, 0.7607843, 0.38039216, 0, 0.67058825, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dlmop"]
 gradient = SubResource("Gradient_imks0")

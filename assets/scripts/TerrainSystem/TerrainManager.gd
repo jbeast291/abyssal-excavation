@@ -62,7 +62,7 @@ func activate_debug_mode() -> void:
 ## there is probably performance to be had here
 ## if we only clear fog on the edges of the cave it would reduce operations a lot
 func _reveal_connected_cave(start_cell: Vector2i):
-	var max_cave_reveal_size: int = 1000;
+	var max_cave_reveal_size: int = 10000;
 	if !_tile_is_air(start_cell):
 		return;
 	
@@ -90,6 +90,8 @@ func _reveal_connected_cave(start_cell: Vector2i):
 		for neighbor in _get_neighbor_tiles_radius(current, 1):
 			if !visited.has(neighbor) and _tile_is_air(neighbor) and !_tile_explored(neighbor):
 				to_check.append(neighbor)
+		
+		await get_tree().process_frame
 
 
 func _tile_is_air(cell: Vector2i) -> bool:

@@ -6,6 +6,7 @@ script/source = "@tool
 extends Node2D
 
 @onready var light_texture: Sprite2D = $\"light-texture\";
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 @export var light_intensity: float = 3.0:
 	set(_light_intensity):
@@ -15,10 +16,24 @@ extends Node2D
 		set_light_intensity();
 
 func _ready() -> void:
+	if(visible_on_screen_notifier_2d.is_on_screen()):
+		_on_visible_on_screen_notifier_2d_screen_entered();
+	else:
+		_on_visible_on_screen_notifier_2d_screen_exited();
 	set_light_intensity();
 
 func set_light_intensity():
 	light_texture.material.set_shader_parameter(\"intensity\", light_intensity);
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	light_texture.visible = true;
+	print(\"on screen\");
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	light_texture.visible = false;
+	print(\"off screen\");
 "
 
 [sub_resource type="Shader" id="Shader_dfpic"]
@@ -47,7 +62,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xacm"]
 shader = SubResource("Shader_dfpic")
-shader_parameter/intensity = 3.0
+shader_parameter/intensity = 1.17
 
 [sub_resource type="Gradient" id="Gradient_5uy0l"]
 interpolation_color_space = 1
@@ -70,3 +85,9 @@ script = SubResource("GDScript_dfpic")
 [node name="light-texture" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_0xacm")
 texture = SubResource("GradientTexture2D_vdn31")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-72, -71, 143, 141)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

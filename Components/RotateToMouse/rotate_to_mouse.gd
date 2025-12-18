@@ -21,6 +21,11 @@ func _get_joystick_angle_around_point() -> float:
 	var x_axis: float = Input.get_axis("Joypad Right Stick_Left", "Joypad Right Stick_Right",);
 	var y_axis: float = Input.get_axis("Joypad Right Stick_Up", "Joypad Right Stick_Down");
 	var joy_axis: Vector2 = Vector2(x_axis, -y_axis);
+	
+	#deadzone
+	if(joy_axis.length() < 0.4):
+		joy_axis = Vector2.ZERO;
+	
 	if(joy_axis == Vector2.ZERO):
 		joy_axis = last_joy_axis;
 	last_joy_axis = joy_axis
