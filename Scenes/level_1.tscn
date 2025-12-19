@@ -1772,14 +1772,14 @@ texture = ExtResource("4_6444e")
 [node name="FogSurface" type="Node2D" parent="Backgrounds/LargeFogAreas"]
 
 [node name="FogSurfaceTransition" type="Sprite2D" parent="Backgrounds/LargeFogAreas/FogSurface"]
-position = Vector2(46.14746, -228.56334)
+position = Vector2(1.0473404, -228.56334)
 rotation = 1.5707964
-scale = Vector2(0.49613258, 4572.69)
+scale = Vector2(0.49613258, 4482.4897)
 texture = SubResource("GradientTexture1D_yltlr")
 
 [node name="FogSurface" type="Sprite2D" parent="Backgrounds/LargeFogAreas/FogSurface"]
-position = Vector2(-49, -1048)
-scale = Vector2(4577, 1432)
+position = Vector2(1.2499015, -1027)
+scale = Vector2(4476.5, 1473.9999)
 texture = SubResource("GradientTexture1D_6ssoq")
 
 [node name="Walkable" type="Node2D" parent="Backgrounds"]
