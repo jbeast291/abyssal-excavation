@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgdc5ltffusj6"]
+
+[ext_resource type="Script" uid="uid://vpe3kyukksm8" path="res://Scenes/fade_in_text.gd" id="1_8g0a1"]
+
+[node name="FadeInText" type="Area2D"]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_8g0a1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

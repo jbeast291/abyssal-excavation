@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cuml4q40hqd6r" path="res://assets/scripts/StateMachineGeneric/StateMachine.gd" id="2_8erm5"]
 [ext_resource type="Script" uid="uid://bmrct0usqvkmc" path="res://assets/scripts/player/Player_Trigger.gd" id="2_bi64h"]
 [ext_resource type="Script" uid="uid://gxxysj4n2vnv" path="res://assets/scripts/player/tool_manager.gd" id="2_qqcod"]
-[ext_resource type="Script" uid="uid://pa7vaqobgdb2" path="res://Scenes/fog_detector.gd" id="2_wpjfl"]
+[ext_resource type="Script" uid="uid://pa7vaqobgdb2" path="res://assets/scripts/player/fog_detector.gd" id="2_wpjfl"]
 [ext_resource type="Script" uid="uid://x0dwycwqf13p" path="res://assets/scripts/player/tools/Wrench.gd" id="3_bi64h"]
 [ext_resource type="Script" uid="uid://dp70m8l8bcx3u" path="res://assets/scripts/player/MovementStates/Land/LandStateMachine.gd" id="3_f1ek2"]
 [ext_resource type="Script" uid="uid://dts40270a0kh5" path="res://assets/scripts/player/tools/drill.gd" id="3_wpjfl"]

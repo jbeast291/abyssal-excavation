@@ -28,4 +28,4 @@ sprite_frames = SubResource("SpriteFrames_7j5bg")
 [node name="PipeDragCollisionCheck" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(1, 0)
-collision_mask = 5
+collision_mask = 6

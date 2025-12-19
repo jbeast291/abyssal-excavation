@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b22bsyecurknv"
-path="res://.godot/imported/Orbito.otf-d9b8e47e7a09fcd4ab1f2790efe4d749.fontdata"
+path="res://.godot/imported/Orbito.otf-f2d6366e566d331b26c5eb593223ca19.fontdata"
 
 [deps]
 
-source_file="res://assets/Orbito.otf"
-dest_files=["res://.godot/imported/Orbito.otf-d9b8e47e7a09fcd4ab1f2790efe4d749.fontdata"]
+source_file="res://assets/Fonts/Orbito.otf"
+dest_files=["res://.godot/imported/Orbito.otf-f2d6366e566d331b26c5eb593223ca19.fontdata"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkgg5sxw2sgs5"]
 
 [ext_resource type="Script" uid="uid://c2h0q5uny7wwy" path="res://assets/scripts/UiController.gd" id="1_w371h"]
-[ext_resource type="FontFile" uid="uid://b22bsyecurknv" path="res://assets/Orbito.otf" id="2_nxvpl"]
+[ext_resource type="FontFile" uid="uid://b22bsyecurknv" path="res://assets/Fonts/Orbito.otf" id="2_nxvpl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxvpl"]
 bg_color = Color(0.003921569, 0.003921569, 0, 0)

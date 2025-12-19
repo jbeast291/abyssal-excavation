@@ -32,6 +32,7 @@ project/assembly_name="abyssalExcavation"
 folder_colors={
 "res://Components/": "orange",
 "res://Scenes/": "purple",
+"res://assets/Fonts/": "gray",
 "res://assets/scripts/": "green",
 "res://assets/scripts/player/": "red",
 "res://assets/shaders/": "pink",

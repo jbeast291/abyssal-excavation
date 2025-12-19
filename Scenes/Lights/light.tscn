@@ -28,12 +28,9 @@ func set_light_intensity():
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	light_texture.visible = true;
-	print(\"on screen\");
-
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	light_texture.visible = false;
-	print(\"off screen\");
 "
 
 [sub_resource type="Shader" id="Shader_dfpic"]
@@ -83,6 +80,7 @@ copy_mode = 2
 script = SubResource("GDScript_dfpic")
 
 [node name="light-texture" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_0xacm")
 texture = SubResource("GradientTexture2D_vdn31")
 

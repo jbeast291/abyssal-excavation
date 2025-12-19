@@ -21,7 +21,7 @@ collision_layer = 32
 collision_mask = 32
 script = ExtResource("1_pdx8m")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="WaveGeometry" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_hf3rq")
 position = Vector2(84, 1)
 color = Color(1, 1, 1, 0)
@@ -33,5 +33,10 @@ position = Vector2(-6, -16)
 shape = SubResource("RectangleShape2D_pdx8m")
 one_way_collision = true
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-203, -87, 394, 246)
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

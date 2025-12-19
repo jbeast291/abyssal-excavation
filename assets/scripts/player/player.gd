@@ -8,11 +8,12 @@ class_name Player extends CharacterBody2D;
 
 @export var pipe_holder: Node2D;
 @export var player_color: Color;
-# Mining state
+
+signal entered_water;
+signal entered_land;
 
 func _ready():
 	assert(pipe_holder!=null);
-	#body_sprite.material.set_shader_parameter("replacement_color", player_color)
 	pass
 
 func _process(delta: float):
@@ -42,11 +43,13 @@ func _physics_process(delta: float):
 
 func get_motor_state() -> State:
 	return movement_state_machine.current_state;
-
+	
 func set_swimming() -> void:
 	movement_state_machine.change_state("Water");
+	entered_water.emit();
 
 func set_walking(apply_force_on_walking: bool) -> void:
 	movement_state_machine.change_state("Land");
 	if(apply_force_on_walking):
 		land.apply_upwards_force(150);
+	entered_land.emit();

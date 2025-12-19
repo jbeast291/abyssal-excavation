@@ -4,7 +4,7 @@ static var main: GameManager;
 
 var current_time: float;
 var oil_value: float = 0;
-var total_oil_needed: float = 100;
+var total_oil_needed: float = 1000;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

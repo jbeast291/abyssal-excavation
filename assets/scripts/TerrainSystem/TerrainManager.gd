@@ -100,15 +100,6 @@ func _tile_is_air(cell: Vector2i) -> bool:
 	return false;
 
 
-func _tile_is_air_and_explored(cell: Vector2i) -> bool:
-	if get_cell_source_id(cell) != 1: # not from air atlas
-		return false;
-	if get_cell_atlas_coords(cell) == placement_layer.air_atlas_coords:
-		return true;
-	return false;
-
-
-
 func _tile_explored(cell: Vector2i) -> bool:
 	if get_cell_source_id(cell) == 1 and get_cell_atlas_coords(cell) == air_explored_atlas_coords:
 		return true;
@@ -126,6 +117,7 @@ func _get_neighbor_tiles_radius(cell: Vector2i, radius: int) -> Array[Vector2i]:
 			if Vector2(dx, dy).length() <= radius:
 				neighbor_cells.append(cell + Vector2i(dx, dy))
 	return neighbor_cells
+
 
 func _debug_set_air_visable():
 	var explored_air: Array[Vector2i] = get_used_cells_by_id(air_atlas_source_id, air_explored_atlas_coords);

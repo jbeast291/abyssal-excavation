@@ -86,12 +86,12 @@ func _generate_fog(cells: Array[Vector2i]):
 	for cell in cells:
 		var fog_source_atlas_id: int = 0;
 		var neighbors: Array[Vector2i] = main_tile_layer._get_neighbor_tiles_radius(cell, main_tile_layer.fog_view_penetration)
-		var air_nearby = false;
+		var explored_air_nearby = false;
 		for neighbor in neighbors:
-			air_nearby = main_tile_layer._tile_is_air_and_explored(neighbor);
-			if air_nearby:
+			explored_air_nearby = main_tile_layer._tile_explored(neighbor);
+			if explored_air_nearby:
 				break;
-		if !air_nearby:
+		if !explored_air_nearby:
 			fog_layer.set_cell(cell, fog_source_atlas_id, Vector2i.ZERO)
 
 func _get_terrain_regions(holder: Node2D) -> Array[TerrainRegion]:
