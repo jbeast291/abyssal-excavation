@@ -6,6 +6,7 @@ extends TileMapLayer
 @export var no_gen_stone_atlas_coords: Vector2i;
 @export var bedrock_atlas_coords: Vector2i;
 @export var air_atlas_coords: Vector2i;
+@export var air_with_fog_atlas_coords: Vector2i;
 
 func _ready():
 	print(self.tile_set.tile_size);

@@ -9,7 +9,7 @@ shader_parameter/wave_count = 5
 shader_parameter/base_height = 6.0
 shader_parameter/base_length = 29.485
 shader_parameter/base_speed = 1.8
-shader_parameter/water_color = Color(0.11852103, 0, 0.23040926, 0.75686276)
+shader_parameter/water_color = Color(0.43842322, 0, 0.7634494, 0.8039216)
 shader_parameter/top_y = 0.0
 shader_parameter/bottom_y = -95.08
 

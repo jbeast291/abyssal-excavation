@@ -40,6 +40,10 @@ func generate_terrain():
 			stone_no_gen_coords.append(cell);
 		if cellAtlasCoords == placement_layer.air_atlas_coords:
 			main_tile_layer._set_cell_air(cell, true);
+		if cellAtlasCoords == placement_layer.air_with_fog_atlas_coords:
+			main_tile_layer._set_cell_air(cell, false);
+			var fog_source_atlas_id: int = 0;
+			fog_layer.set_cell(cell, fog_source_atlas_id, Vector2i.ZERO)
 		if cellAtlasCoords == placement_layer.bedrock_atlas_coords:
 			bedrock_coords.append(cell);
 	
@@ -79,13 +83,12 @@ func _generate_caves(stone_coords: Array[Vector2i], noise_seed: int, threshold: 
 			main_tile_layer._set_cell_air(cell, false)
 
 func _generate_fog(cells: Array[Vector2i]):
-	var fog_source_atlas_id: int = 0;
 	for cell in cells:
+		var fog_source_atlas_id: int = 0;
 		var neighbors: Array[Vector2i] = main_tile_layer._get_neighbor_tiles_radius(cell, main_tile_layer.fog_view_penetration)
-		
 		var air_nearby = false;
 		for neighbor in neighbors:
-			air_nearby = main_tile_layer._tile_is_air(neighbor);
+			air_nearby = main_tile_layer._tile_is_air_and_explored(neighbor);
 			if air_nearby:
 				break;
 		if !air_nearby:

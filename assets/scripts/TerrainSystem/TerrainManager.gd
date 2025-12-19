@@ -70,7 +70,7 @@ func _reveal_connected_cave(start_cell: Vector2i):
 	var visited: Dictionary = {};
 	
 	while to_check.size() > 0:
-		var current: Vector2i = to_check.pop_back();
+		var current: Vector2i = to_check.pop_front();
 		if visited.has(current):
 			continue;
 		visited[current] = true;
@@ -91,13 +91,22 @@ func _reveal_connected_cave(start_cell: Vector2i):
 			if !visited.has(neighbor) and _tile_is_air(neighbor) and !_tile_explored(neighbor):
 				to_check.append(neighbor)
 		
-		await get_tree().process_frame
+		await get_tree().physics_frame
 
 
 func _tile_is_air(cell: Vector2i) -> bool:
 	if get_cell_source_id(cell) == 1: # from air atlas
 		return true;
 	return false;
+
+
+func _tile_is_air_and_explored(cell: Vector2i) -> bool:
+	if get_cell_source_id(cell) != 1: # not from air atlas
+		return false;
+	if get_cell_atlas_coords(cell) == placement_layer.air_atlas_coords:
+		return true;
+	return false;
+
 
 
 func _tile_explored(cell: Vector2i) -> bool:

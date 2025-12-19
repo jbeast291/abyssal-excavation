@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx16uayibme3m"]
+
+[ext_resource type="Texture2D" uid="uid://0n246itws115" path="res://assets/sprites/Pipes/PipeNode.png" id="1_jqtfb"]
+[ext_resource type="PackedScene" uid="uid://dros00nqhabix" path="res://Scenes/Lights/light.tscn" id="2_1hicu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ssoq"]
+atlas = ExtResource("1_jqtfb")
+region = Rect2(1, 1, 14, 14)
+
+[node name="DrillPipeNodePROP" type="Sprite2D"]
+z_index = 10
+texture = SubResource("AtlasTexture_6ssoq")
+
+[node name="CustomPointLight" parent="." instance=ExtResource("2_1hicu")]
+modulate = Color(0, 1, 0, 1)
+light_intensity = 3.775
